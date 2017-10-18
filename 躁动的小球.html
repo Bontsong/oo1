@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>躁动的小球</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+
+		#wrap{
+			width: 100%;
+			height: 100%;
+			background: black;
+			position: relative;
+		}
+
+		#wrap div{
+			position: absolute;
+			border-radius: 50%;
+		}
+
+	</style>
+
+</head>
+<body>
+	
+	<div id="wrap">
+
+	</div>
+</body>
+
+	<script>
+	// 获取元素
+		var wrap = document.getElementById('wrap');
+
+		//定义构造函数用来创建小球
+		function Ball () {
+			//添加属性
+			//颜色
+			this.color = "rgb("+randomFn(255,0)+","+randomFn(255,0)+","+randomFn(255,0)+")";
+			//大小
+			this.wh = randomFn(5,50);
+			//位置
+			this.x = randomFn(0,1000);
+			this.y = randomFn(0,600);
+
+			//添加小球展示的方法
+			this.show = function(){
+				//创建div标签	
+				var oDiv = document.createElement('div');
+				//添加class属性
+				oDiv.setAttribute('class','ball');
+
+				//设置样式
+				oDiv.style.background = this.color;
+				oDiv.style.width = this.wh + 'px';
+				oDiv.style.height = this.wh + 'px';
+				oDiv.style.left = this.x + 'px';
+				oDiv.style.top = this.y + 'px';
+				//添加到wrap中
+				wrap.appendChild(oDiv);
+			}
+
+		}
+
+		//定义一个函数用来返回随机数
+		function randomFn(max,min){
+			return parseInt(Math.random()*(max - min + 1) + min);
+		}
+
+		//添加计时器
+		setInterval(function(){
+			//创建小球
+			var ball = new Ball();
+			ball.show();
+		},1000);
+
+
+	</script>
+
+</html>
